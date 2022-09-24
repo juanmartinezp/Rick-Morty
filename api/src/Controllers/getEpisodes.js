@@ -10,7 +10,7 @@ async function generateEpisodes() {  //Me guardo los episodios en la DB y la fun
         for(let i=1; i<4; i++) {
             let pages = await axios.get(`${URL}${i}`)
             pages.data.results.forEach(async (e) => {
-            const [createdEpisodes, isCreated] = await Episode.findOrCreate({
+            const [/*createdEpisodes*/, isCreated] = await Episode.findOrCreate({
                 where: {
                     id: e.id,
                 },
@@ -19,7 +19,7 @@ async function generateEpisodes() {  //Me guardo los episodios en la DB y la fun
                     id: e.id
                 }
             })
-            console.log(isCreated)
+            //console.log(isCreated)
             })
         }
     } catch (error) {

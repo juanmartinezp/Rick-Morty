@@ -12,23 +12,23 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      //allowNull: false,
+      allowNull: false,
     },
     species: {
       type: DataTypes.STRING,
-      //allowNull: false,
+      allowNull: false,
     },
     origin: {
       type: DataTypes.STRING,
-      //allowNull: false,
+      allowNull: false,
     },
     image: {
       type: DataTypes.TEXT,
-      //allowNull: false,
+      allowNull: true,
     },
     created: {
       type: DataTypes.STRING,
-      //allowNull: false,
+      allowNull: true,
     },
     createdInDB: {
       type: DataTypes.BOOLEAN,
@@ -36,6 +36,6 @@ module.exports = (sequelize) => {
       allowNull: false,
     }
   }, {
-    timestamp: false
+    timestamps: false
   });
 };

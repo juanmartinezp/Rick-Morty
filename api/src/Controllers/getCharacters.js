@@ -10,23 +10,19 @@ const { Character } = require('../db.js');
 async function getDBInfo(name) {
     try {
         if(!name) {
-            const char = await Character.findAll({
-                where: {
-                    createdInDB: true
-                }
-            })
+            const char = await Character.findAll();
             let data = char.map(e => {
                 return {
                     id: e.id,
                     name: e.name,
                     species: e.species,
-                    origin: e.origin,
-                    image: e.image,
+                    origin: [e.origin],
+                    image: e.image, 
                     created: e.created,
                     createdInDB: e.createdInDB,
                 }
             })
-            console.log(data.length, 'CHARACTERS TRAIDOS DE LA BASE DE DATOS')
+            //console.log(data.length, ' CHARACTERS TRAIDOS DE LA BASE DE DATOS')
             return data;
         }
 
@@ -42,13 +38,13 @@ async function getDBInfo(name) {
                 id: e.id,
                 name: e.name,
                 species: e.species,
-                origin: e.origin,
+                origin: [e.origin],
                 image: e.image,
                 created: e.created,
                 createdInDB: e.createdInDB,
             }
         })
-        console.log(data.length, 'CHARACTERS TRAIDOS DE LA BASE DE DATOS')
+        //console.log(data.length, ' CHARACTERS TRAIDOS DE LA BASE DE DATOS CON NOMBRE')
         return data;
 
     } catch (error) {
@@ -72,7 +68,7 @@ async function getApiInfo(name) {
                             id: e.id,
                             name: e.name,
                             species: e.species,
-                            origin: e.origin,
+                            origin: [e.origin],
                             image: e.image,
                             created: e.created,
                             createdInDB: false,
@@ -81,7 +77,7 @@ async function getApiInfo(name) {
                     next_URL = pages.data.next
                 })
             }
-            console.log(apiData.length, 'CHARACTERS TRAIDOS DE LA API')
+            //console.log(apiData.length, ' CHARACTERS TRAIDOS DE LA API')
             return apiData;
         }
 
@@ -93,14 +89,14 @@ async function getApiInfo(name) {
                     id: e.id,
                     name: e.name,
                     species: e.species,
-                    origin: e.origin,                        
+                    origin: [e.origin],                        
                     image: e.image,
                     created: e.created,
                     createdInDB: false,
                 }
             )
         })
-        console.log(apiData.length, 'CHARACTERS TRAIDOS DE LA API')
+        //console.log(apiData.length, ' CHARACTERS TRAIDOS DE LA API CON NAME')
         return apiData;
 
     } catch (error) {
@@ -135,7 +131,7 @@ async function getAllInfo(req, res, next){
             }
             return res.json(data)
         }
-        let totalData = [...myData, ...data] 
+        let totalData = [...myData,...data] 
             return res.json(totalData)
 
     } catch (error) {
@@ -145,4 +141,4 @@ async function getAllInfo(req, res, next){
 
 
 
-module.exports = getAllInfo
+module.exports = {getAllInfo}

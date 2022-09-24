@@ -44,7 +44,7 @@ sequelize.models = Object.fromEntries(capsEntries)
 const { Character, Episode } = sequelize.models;
 
 // Aca vendrian las relaciones
-Character.belongsToMany(Episode, { through: 'nexus', timestamp: false })
+Character.belongsToMany(Episode, { through: 'nexus', timestamps: false })
 Episode.belongsToMany(Character, { through: 'nexus', timestamps: false})
 
 module.exports = {
